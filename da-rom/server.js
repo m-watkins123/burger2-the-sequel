@@ -8,7 +8,7 @@ let methodOverride = require('method-override');
 
 let app = express();
 
-let PORT = process.env.PORT || 8080;
+let PORT = process.env.PORT || 3306;
 
 app.use(methodOverride("_method"));
 

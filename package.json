@@ -1,0 +1,24 @@
+{
+  "name": "burger2-the-sequel",
+  "version": "1.0.0",
+  "description": "burger2-the-sequel",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m-watkins123/burger2-the-sequel.git"
+  },
+  "author": "manassa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/m-watkins123/burger2-the-sequel/issues"
+  },
+  "homepage": "https://github.com/m-watkins123/burger2-the-sequel#readme",
+  "dependencies": {},
+  "devDependencies": {},
+  "keywords": [
+    "burger"
+  ]
+}

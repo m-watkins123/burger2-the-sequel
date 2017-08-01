@@ -1,57 +1,120 @@
 
-var express = require('express');
+let db = require('../models/');
 
-var router = express.Router();
 
-var burger = require('../models/burger.js');
 
-router.get('/', function(req, res) {
+module.exports = (app) => {
 
-  burger.selectAll(function(data) {
+ 
 
-    var hbsObject = {
+    app.get("/", (req,res) => {
 
-      burgers: data
+        db.Burger.findAll({}).then(function(data) {
 
-    };
+            var hbsObject = {
 
-    res.render('index', hbsObject);
+               foods: data 
 
-  });
+            }
 
-});
+            res.render("index", hbsObject);
 
-router.post('/burgers', function(req, res) {
+        });
 
-  burger.insertOne([
+    });
 
-    'burger_name'
 
-  ], [
 
-    req.body.burger_name
+ 
 
-  ], function(data) {
+  app.post('/', (req,res) => {
 
-    res.redirect('/');
+            console.log("This is the request", req.body);
 
-  });
+        db.Burger.create({
 
-});
+            burger_name: req.body.burger_name,
 
-router.put('/burgers/:id', function(req, res) {
+            devoured: 0
 
-  var condition = 'id = ' + req.params.id;
-  burger.updateOne({
+        }).then((data) => {
 
-    devoured: true
+            console.log('Posted!!');
 
-  }, condition, function(data) {
+            
 
-    res.redirect('/');
+            res.redirect('/');
+
+        });
 
   });
 
-});
 
-module.exports = router;
+
+
+
+     app.put('/:id', (req,res) => {
+
+        db.Burger.update({
+
+            devoured:1
+
+        },
+
+        {
+
+            where: {
+
+                id: req.params.id
+
+            }
+
+        }).then((data) => {
+
+            console.log("Devoured!!!");
+
+            res.redirect('/');
+
+        });
+
+     });
+
+    
+
+    app.delete('/:id', (req,res) => {
+
+        db.Burger.destroy({
+
+            where: {
+
+                id: req.params.id
+
+            }
+
+        }).then((data) => {
+
+            console.log("Destroyed!!!");
+
+            res.redirect('/');
+
+        });
+
+    }); 
+
+}
+
+
+ router.delete('/:id', function(req, res) {
+                 var condition = "id = " + req.params.id;
+
+    console.log("condition", condition);
+
+        
+
+    food.deleteOne(condition, function() {
+
+        res.redirect('/');
+     });
+ });
+
+ module.exports = router;
