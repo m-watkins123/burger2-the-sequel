@@ -1,5 +1,3 @@
-
-
 CREATE DATABASE burgerSql_db;
 
 USE burgers_db;
@@ -19,3 +17,10 @@ CREATE TABLE burger
 	PRIMARY KEY (id)
 
 );
+INSERT INTO burger (burger_name, devoured) 
+
+VALUES ('Burger', true),
+
+	   ('Noodles', false),
+
+	   ('Pizza', false);
